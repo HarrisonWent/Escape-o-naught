@@ -23,12 +23,12 @@ public class SetScreenSize : MonoBehaviour
 
     private void SetRes()
     {
-        current_w = Screen.width;
-        current_h = Screen.height;
-        float width_size = (float)(w_amount * Screen.height / Screen.width * 0.5);
-        float height_size = (float)(h_amount * Screen.width / Screen.height * 0.5) * ((float)Screen.height / Screen.width);
-        cam.orthographicSize = Mathf.Max(height_size, width_size);
-        Spawn.orthosize = cam.orthographicSize;
+        //current_w = Screen.width;
+        //current_h = Screen.height;
+        //float width_size = (float)(w_amount * Screen.height / Screen.width * 0.5);
+        //float height_size = (float)(h_amount * Screen.width / Screen.height * 0.5) * ((float)Screen.height / Screen.width);
+        //cam.orthographicSize = Mathf.Max(height_size, width_size);
+        //Spawn.orthosize = cam.orthographicSize;
     }
 
    /* void Update()

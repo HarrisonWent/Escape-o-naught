@@ -21,7 +21,7 @@ public class Spawn : MonoBehaviour
 
     //Time from sim start
     public float Timer = 0.00f;
-    public static float orthosize;
+    private float ZoomInFov = 45f, ZoomOutFov = 65f;
 
     private void Start()
     {
@@ -46,9 +46,9 @@ public class Spawn : MonoBehaviour
 
         if (!Lerping)
         {
-            if (Camera.main.orthographicSize < orthosize)
+            if (Camera.main.fieldOfView < ZoomOutFov)
             {
-                Camera.main.orthographicSize += 0.1f;
+                Camera.main.fieldOfView += 5*Time.deltaTime;
             }
         }
 
@@ -68,11 +68,10 @@ public class Spawn : MonoBehaviour
             Vector3 adjustedPoisitionForDistance = new Vector3(playerTransform.position.x, Mathf.Clamp(playerTransform.position.y,-8,16), camTransform.position.z);
             camTransform.position = Vector3.Lerp(camTransform.position, adjustedPoisitionForDistance, Time.deltaTime * LerpSpeed);
 
-            if (Camera.main.orthographicSize > 8)
+            if (Camera.main.fieldOfView < ZoomInFov)
             {
-                Camera.main.orthographicSize -= 0.1f;
+                Camera.main.fieldOfView -= 5 * Time.deltaTime;
             }
-
         }
     }
 

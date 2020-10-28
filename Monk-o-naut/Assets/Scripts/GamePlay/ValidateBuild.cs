@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class ValidateBuild : MonoBehaviour
 {
-    public Collider2D myCollider;
-    public Rigidbody2D myRigid;
-    public Collider2D other;
+    public Collider myCollider;
+    public Rigidbody myRigid;    
 
-    private void OnTriggerStay2D(Collider2D collider)
+    private void OnTriggerStay(Collider collider)
     {
         //Can't build here
         Builder.ValidateBuildCount = false;
     }
 
-    private void OnTriggerExit2D(Collider2D collider)
+    private void OnTriggerExit(Collider collider)
     {
         //Can build here
         Builder.ValidateBuildCount = true;
@@ -22,25 +21,20 @@ public class ValidateBuild : MonoBehaviour
 
     //Turns on validation
     public void ActivateValidator()
-    {
-        myCollider.isTrigger = true;
+    {        
         myRigid.WakeUp();
-        if (other != null)
+        if (myCollider)
         {
-            myCollider.enabled = true;
-            other.enabled = false;
+            myCollider.isTrigger = true;
         }
     }
 
     //Turns it off
     public void DisableValidator()
-    {
-        myCollider.isTrigger = false;
-        myRigid.Sleep();
-        if (other != null)
+    {        
+        if (myCollider)
         {
-            myCollider.enabled = false;
-            other.enabled = true;
+            myCollider.isTrigger = false;
         }
     }
 }

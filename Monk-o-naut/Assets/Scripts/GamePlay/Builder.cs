@@ -97,26 +97,43 @@ public class Builder : MonoBehaviour
 
     private void Update()
     {
-        if (placingObject == null)
+        if (!placingObject)
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                Vector3 mousePoint =GetMousePosition();
+                mousePoint.z = -23;
+                RaycastHit hit = new RaycastHit();
+                //RaycastHit hit = Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.zero);
+                Debug.Log("Ray from:" + mousePoint);
+                Ray ray = new Ray(mousePoint, Vector3.forward);
 
-                if (hit.collider!=null)
+                LayerMask someMask = ~0;
+                Physics.Raycast(ray, out hit, 100f, someMask);
+
+                if (hit.collider)
                 {
-                    Debug.Log(hit.transform.name);
+                    Debug.Log("Move: " + hit.transform.name);
 
                     if (hit.transform.parent)
                     {
                         if (hit.transform.parent.tag == "USEROBJECT")
                         {
+                            Debug.Log("Reactive moving");
                             placingObject = hit.transform.parent.gameObject;
                             hit.transform.parent.GetComponentInChildren<ValidateBuild>().ActivateValidator();
                             UIObjectToHide.SetActive(false);
                             binObject.SetActive(true);
                             currentNumber = 900;
                         }
+                        else
+                        {
+                            Debug.Log("Failed wrong tag!");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Failed no parent! " + hit.transform.name);
                     }
                 }
             }
@@ -202,9 +219,9 @@ public class Builder : MonoBehaviour
     //Get mouse position in world
     private Vector3 GetMousePosition()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Vector3 pos = ray.GetPoint(100);
-        return new Vector3(pos.x, pos.y, 0);
+        Vector3 mousePoint = Input.mousePosition;
+        mousePoint.z = -Camera.main.transform.position.z;
+        return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
     //Destroy placing object

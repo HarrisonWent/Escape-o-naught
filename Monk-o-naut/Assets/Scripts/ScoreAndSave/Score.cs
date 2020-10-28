@@ -6,26 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour
 {
-    public GameObject score, FinishLevelDisplay;
+    public GameObject FinishLevelDisplay, WinScreen;
     public Spawn spawnPoint;
     public Text TimeToCompleteText;
     public int TimeToGetForFourStars = 15, TimeToGetForFiveStars = 10;
     public Sprite Star,BlankStar;
-    public GameObject WinScreen;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         //When player enter score point
         if (other.tag == "Player")
         {
-            FinishLevelDisplay.SetActive(true);
+            Debug.Log(SceneManager.GetActiveScene().buildIndex + " " + SceneManager.sceneCountInBuildSettings);
+            if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+            {
+                WinScreen.SetActive(true);
+            }
+            else
+            {
+                FinishLevelDisplay.SetActive(true);
+            }
+
             PlayerProgress.SaveProgress();
             FindObjectOfType<AudioManager>().Play("LevelComplete"); //level complete music
 
             Respawn Res = GameObject.Find("MenuLogic").GetComponent<Respawn>();
-
-            //Display time
-            score.SetActive(true);
 
             if (Res.lives < 3)
             {
@@ -72,16 +77,11 @@ public class Score : MonoBehaviour
 
             GameObject.Find("MenuLogic").GetComponent<Respawn>().ResetLives();
 
-            score.SetActive(false);
             Destroy(spawnPoint.SpawnedPlayer);
 
             spawnPoint.Timer = 0.00f;
 
-            Debug.Log(SceneManager.GetActiveScene().buildIndex + " " + SceneManager.sceneCountInBuildSettings);
-            if(SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings-1)
-            {
-                WinScreen.SetActive(true);
-            }
+
         }
     }
 

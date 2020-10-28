@@ -8,7 +8,7 @@ public class PlayerDeath : MonoBehaviour
     private Spawn spawner;
 
     //Takes life and kills the player
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Player") { return; }
 

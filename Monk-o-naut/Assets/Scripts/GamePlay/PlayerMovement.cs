@@ -6,21 +6,16 @@ public class PlayerMovement : MonoBehaviour
 {
     public Transform footPosition;
     public string LastName = "";//last name of object it hit
-    private ConstantForce2D myForce;
-    public Sprite Stand, Walk1, Walk2,Jump,Hurt;
-    public Sprite Spring1, Spring2, Spring3;
-    private Rigidbody2D MyRigid;
-    private SpriteRenderer myRend;
-    SpriteRenderer r;
-    public int VerticalSpeed,HorizontalSpeed,FlyingSpeed;
+    private ConstantForce myForce;
+    private Rigidbody MyRigid;
+    public int VerticalSpeed,HorizontalSpeed,FlyingSpeed,BounceForce = 20;
 
     private void Start()
     {
-        MyRigid = GetComponent<Rigidbody2D>();
-        myRend = GetComponent<SpriteRenderer>();
-        myForce = GetComponent<ConstantForce2D>();
+        MyRigid = GetComponent<Rigidbody>();
+        myForce = GetComponent<ConstantForce>();
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.tag == "Slope")
         {
@@ -32,31 +27,31 @@ public class PlayerMovement : MonoBehaviour
             {
                 //slide up
                 Debug.Log("UP");
-                myForce.relativeForce = new Vector2(HorizontalSpeed, VerticalSpeed);
+                myForce.relativeForce = new Vector3(HorizontalSpeed, VerticalSpeed,0);
             }
             else
             {
                 //slide down
                 Debug.Log("DOWN");
-                myForce.relativeForce = new Vector2(HorizontalSpeed, -VerticalSpeed);
+                myForce.relativeForce = new Vector3(HorizontalSpeed, -VerticalSpeed,0);
             }
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter(Collision collision)
     {
         
          if (collision.transform.tag == "Flip")
         {
             if (LastName == collision.transform.parent.name) { return; }
-
+            Debug.Log("Flip");
             //set name of flip it it
             LastName = collision.transform.parent.name;
             float yDif = transform.position.y - collision.transform.position.y;
 
             //move the player to the other side of the flip and invert gravity
             transform.position = new Vector3(transform.position.x, collision.transform.position.y - yDif - 0.5f, transform.position.z);
-            MyRigid.gravityScale = -GetComponent<Rigidbody2D>().gravityScale;
+            Physics.gravity = -Physics.gravity;
             transform.Rotate(Vector2.left * 180);
         }
         else if (collision.transform.tag == "Deflective")
@@ -67,15 +62,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.transform.tag == "Bounce")
         {
+            Debug.Log("Bounce");
             MyRigid.velocity = new Vector2(MyRigid.velocity.x,0);
-            MyRigid.AddForce(transform.TransformDirection(Vector3.up)*15, ForceMode2D.Impulse);
-            r = collision.gameObject.GetComponent<SpriteFind>().r;
+            MyRigid.AddForce(transform.TransformDirection(Vector3.up)* BounceForce, ForceMode.Impulse);
             StartCoroutine("Spring", collision.transform);
             FindObjectOfType<AudioManager>().Play("BounceStraight"); // jump sound effect
         }
     }
 
-    float timer = 0.00f;
     bool walkToggle = true;
     public bool dead = false;
 
@@ -83,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dead)
         {
-            myRend.sprite = Hurt;
+            //DEAD ANIMATION
             return;
         }
 
@@ -94,47 +88,34 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            myRend.sprite = Stand;
+            //IDLE ANIMATION
             walkToggle = false;
             //Stand
         }
         
         if (walkToggle)
         {
-            timer += Time.deltaTime;
-            if (timer > 0.10f)
-            {
-                if (myRend.sprite == Walk1)
-                {
-                    myRend.sprite = Walk2;
-                }
-                else
-                {
-                    myRend.sprite = Walk1;
-                }
-                timer = 0.00f;
-            }
+            //WALK ANMIATION
         }
 
         //jump
         if ((MyRigid.velocity.y > 2 || MyRigid.velocity.y < -1) && myForce.relativeForce.y == -1)
         {
-            myRend.sprite = Jump;
+            //JUMP ANIMATION
             if (MyRigid.velocity.x > FlyingSpeed)
             {
-                MyRigid.velocity = new Vector2(FlyingSpeed, MyRigid.velocity.y);
+                MyRigid.velocity = new Vector3(FlyingSpeed, MyRigid.velocity.y,0);
             }
-
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit(Collision collision)
     {
         if (collision.transform.tag == "Slope")
         {
             if (LastName == collision.transform.parent.name)
             {
-                myForce.relativeForce = new Vector2(HorizontalSpeed, -1);
+                myForce.relativeForce = new Vector3(HorizontalSpeed, -1,0);
                 LastName = "";
             }
         }
@@ -143,13 +124,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Spring(Transform springer)
     {
         Debug.Log(springer.name);
-
-        r.sprite = Spring2;
-        yield return new WaitForSeconds(0.1f);
-        r.sprite = Spring3;
-        yield return new WaitForSeconds(0.2f);
-        r.sprite = Spring2;
-        yield return new WaitForSeconds(0.1f);
-        r.sprite = Spring1;
+        yield break;
+        //SPRING ANIMATION
     }
 }
