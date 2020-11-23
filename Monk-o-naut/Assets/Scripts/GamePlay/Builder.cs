@@ -23,6 +23,7 @@ public class Builder : MonoBehaviour
     //Building tab panel = Panel for building
 
     private GameObject placingObject;//Current object being moved and placed
+    private ValidateBuild placingValidate;
 
     public Texture2D NormalCursor, RedCursor;
 
@@ -74,7 +75,7 @@ public class Builder : MonoBehaviour
             //Spawn prefab
             placingObject = Instantiate(BuildingPrefabs[objectNumber], transform.position, transform.rotation);
             placingObject.name = BuildingPrefabs[objectNumber].name + BuildingCounter;
-
+            placingValidate= placingObject.GetComponentInChildren<ValidateBuild>();
             if (placingObject.GetComponent<PlaceTeleporter>())
             {
                 placingObject.transform.position = Vector3.zero;
@@ -121,7 +122,8 @@ public class Builder : MonoBehaviour
                         {
                             Debug.Log("Reactive moving");
                             placingObject = hit.transform.parent.gameObject;
-                            hit.transform.parent.GetComponentInChildren<ValidateBuild>().ActivateValidator();
+                            placingValidate = hit.transform.parent.GetComponentInChildren<ValidateBuild>();
+                            placingValidate.ActivateValidator();
                             UIObjectToHide.SetActive(false);
                             binObject.SetActive(true);
                             currentNumber = 900;
@@ -146,11 +148,11 @@ public class Builder : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire2"))
             {
-                int[] options = new int[] { 0, 45, 0,-45 };
+                int[] options = new int[] { 0, -90 };
                 rotatecount++;
                 if (rotatecount >= options.Length) { rotatecount = 0; }
 
-                placingObject.transform.rotation = Quaternion.Euler(placingObject.transform.eulerAngles.x, placingObject.transform.eulerAngles.y, options[rotatecount]);
+                placingObject.transform.rotation = Quaternion.Euler(0, 0, options[rotatecount]);
             }
         }
 
@@ -160,6 +162,7 @@ public class Builder : MonoBehaviour
         int x = Mathf.RoundToInt(MousePos.x);
         int y = Mathf.RoundToInt(MousePos.y);
         Vector3 CorrectedPosition = new Vector3(x, y,0);
+        CorrectedPosition += placingValidate.PlacingOffset;
 
         placingObject.transform.position = CorrectedPosition;
 

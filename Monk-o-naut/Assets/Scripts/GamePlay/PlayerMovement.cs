@@ -6,9 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public Transform footPosition;
     public string LastName = "";//last name of object it hit
+
     private ConstantForce myForce;
     private Rigidbody MyRigid;
-    public int VerticalSpeed,HorizontalSpeed,FlyingSpeed,BounceForce = 20;
+
+    //Slope speed only, -1 is default grav, these are used to travel up and down slopes
+    public int VerticalSpeed,FlyingSpeed,
+        BounceForce = 20;
 
     private void Start()
     {
@@ -27,13 +31,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 //slide up
                 Debug.Log("UP");
-                myForce.relativeForce = new Vector3(HorizontalSpeed, VerticalSpeed,0);
+                myForce.force = new Vector3(myForce.force.x, VerticalSpeed,0);
             }
             else
             {
                 //slide down
                 Debug.Log("DOWN");
-                myForce.relativeForce = new Vector3(HorizontalSpeed, -VerticalSpeed,0);
+                myForce.force = new Vector3(myForce.force.x, -VerticalSpeed,0);
             }
         }
     }
@@ -57,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.transform.tag == "Deflective")
         {
             Debug.Log("Deflect");
-            myForce.relativeForce = -myForce.relativeForce;
+            myForce.force = new Vector3(-myForce.force.x, myForce.force.y, 0);
             MyRigid.velocity = Vector2.zero;
         }
         else if (collision.transform.tag == "Bounce")
@@ -99,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //jump
-        if ((MyRigid.velocity.y > 2 || MyRigid.velocity.y < -1) && myForce.relativeForce.y == -1)
+        if ((MyRigid.velocity.y > 2 || MyRigid.velocity.y < -1) && myForce.force.y == -1)
         {
             //JUMP ANIMATION
             if (MyRigid.velocity.x > FlyingSpeed)
@@ -115,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (LastName == collision.transform.parent.name)
             {
-                myForce.relativeForce = new Vector3(HorizontalSpeed, -1,0);
+                myForce.force = new Vector3(myForce.force.x, -1f,0);
                 LastName = "";
             }
         }

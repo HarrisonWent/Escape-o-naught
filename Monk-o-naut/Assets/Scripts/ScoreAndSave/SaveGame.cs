@@ -161,10 +161,10 @@ public class SaveGame : MonoBehaviour
     public void LoadSettings()
     {
         if(PlayerPrefs.GetInt("Saved") != 1) { return; }
-        float Volume = PlayerPrefs.GetFloat("Volume");
-        int Graphics = PlayerPrefs.GetInt("Graphics");
+        //float Volume = PlayerPrefs.GetFloat("Volume");
+        //int Graphics = PlayerPrefs.GetInt("Graphics");
 
-        VolumeSlider.value = Volume;
-        GraphicsDropdown.value = Graphics;
+        //VolumeSlider.value = Volume;
+        //GraphicsDropdown.value = Graphics;
     }
 }

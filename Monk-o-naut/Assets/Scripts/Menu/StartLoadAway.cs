@@ -12,8 +12,7 @@ public class StartLoadAway : MonoBehaviour
 
     private void Awake()
     {
-        Loading = Instantiate(LoadScreen, transform.position, transform.rotation);
-        Loading.transform.SetParent(LoadCanvas.transform);
+        Loading = Instantiate(LoadScreen, LoadCanvas.transform);
         StartCoroutine("CloseLoad");
     }
 

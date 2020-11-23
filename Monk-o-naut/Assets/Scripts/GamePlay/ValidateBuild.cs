@@ -5,7 +5,8 @@ using UnityEngine;
 public class ValidateBuild : MonoBehaviour
 {
     public Collider myCollider;
-    public Rigidbody myRigid;    
+    public Rigidbody myRigid;
+    public Vector3 PlacingOffset;
 
     private void OnTriggerStay(Collider collider)
     {
