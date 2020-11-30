@@ -26,7 +26,7 @@ public class ButtonAction : MonoBehaviour
         spawn = Instantiate(MessageWindow);
         spawn.transform.SetParent(transform.parent.transform.parent.transform);
         spawn.GetComponentInChildren<Text>().text = Message;
-        spawn.transform.position = new Vector3(transform.position.x, transform.position.y-100, transform.position.z);
+        spawn.transform.position = new Vector3(transform.position.x, transform.position.y-150, transform.position.z);//todo scale with res
 
     }
 

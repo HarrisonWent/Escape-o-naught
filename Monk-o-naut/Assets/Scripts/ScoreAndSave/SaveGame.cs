@@ -136,8 +136,10 @@ public class SaveGame : MonoBehaviour
             int count = 0;
             foreach (GameObject g in buildSource.BuildingPrefabs)
             {
+                Debug.Log("Load object: " + ObjectName);
                 if (ObjectName.Contains(g.name))
                 {
+                    Debug.Log("Spawn block: " + g.name);
                     GameObject spawn = Instantiate(g, CombinedPos, Quaternion.Euler(CombinedRot));
                     if (spawn.GetComponentInChildren<ValidateBuild>())
                     {
