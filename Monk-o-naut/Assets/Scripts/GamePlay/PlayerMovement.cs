@@ -9,9 +9,10 @@ public class PlayerMovement : MonoBehaviour
 
     private ConstantForce myForce;
     private Rigidbody MyRigid;
+    public Animator MyAnimator;
 
     //Slope speed only, -1 is default grav, these are used to travel up and down slopes
-    public int VerticalSpeed,FlyingSpeed,
+    public int SlopeSpeed,FallingSpeed,
         BounceForce = 20;
 
     private void Start()
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
         MyRigid = GetComponent<Rigidbody>();
         myForce = GetComponent<ConstantForce>();
     }
+
     private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.tag == "Slope")
@@ -30,22 +32,19 @@ public class PlayerMovement : MonoBehaviour
             if (collision.transform.position.y > footPosition.position.y)
             {
                 //slide up
-                Debug.Log("UP");
-                myForce.force = new Vector3(myForce.force.x, VerticalSpeed,0);
+                myForce.force = new Vector3(myForce.force.x, SlopeSpeed, 0);
             }
             else
             {
                 //slide down
-                Debug.Log("DOWN");
-                myForce.force = new Vector3(myForce.force.x, -VerticalSpeed,0);
+                myForce.force = new Vector3(myForce.force.x, -SlopeSpeed, 0);
             }
         }
     }
 
     void OnCollisionEnter(Collision collision)
-    {
-        
-         if (collision.transform.tag == "Flip")
+    {        
+        if (collision.transform.tag == "Flip")
         {
             if (LastName == collision.transform.parent.name) { return; }
             Debug.Log("Flip");
@@ -61,15 +60,14 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.transform.tag == "Deflective")
         {
             Debug.Log("Deflect");
-            myForce.force = new Vector3(-myForce.force.x, myForce.force.y, 0);
-            MyRigid.velocity = Vector2.zero;
+            myForce.force = new Vector3(-myForce.force.x, myForce.force.y, 0);            
+            transform.Rotate(Vector3.up * 180);
         }
         else if (collision.transform.tag == "Bounce")
         {
             Debug.Log("Bounce");
             MyRigid.velocity = new Vector2(MyRigid.velocity.x,0);
             MyRigid.AddForce(transform.TransformDirection(Vector3.up)* BounceForce, ForceMode.Impulse);
-            StartCoroutine("Spring", collision.transform);
             FindObjectOfType<AudioManager>().Play("BounceStraight"); // jump sound effect
         }
     }
@@ -84,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
             //DEAD ANIMATION
             return;
         }
+        //Debug.Log("Current speed: " + MyRigid.velocity.magnitude);
+        MyAnimator.SetFloat("Speed", MyRigid.velocity.magnitude/myForce.force.magnitude);
 
         if (MyRigid.velocity.x > 0 || MyRigid.velocity.x < 0)
         {
@@ -93,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             //IDLE ANIMATION
+            
             walkToggle = false;
             //Stand
         }
@@ -106,10 +107,15 @@ public class PlayerMovement : MonoBehaviour
         if ((MyRigid.velocity.y > 2 || MyRigid.velocity.y < -1) && myForce.force.y == -1)
         {
             //JUMP ANIMATION
-            if (MyRigid.velocity.x > FlyingSpeed)
+            MyAnimator.SetBool("Falling", true);
+            if (MyRigid.velocity.x > FallingSpeed)
             {
-                MyRigid.velocity = new Vector3(FlyingSpeed, MyRigid.velocity.y,0);
+                MyRigid.velocity = new Vector3(FallingSpeed, MyRigid.velocity.y,0);
             }
+        }
+        else
+        {
+            MyAnimator.SetBool("Falling", false);
         }
     }
 
@@ -123,12 +129,5 @@ public class PlayerMovement : MonoBehaviour
                 LastName = "";
             }
         }
-    }
-
-    private IEnumerator Spring(Transform springer)
-    {
-        Debug.Log(springer.name);
-        yield break;
-        //SPRING ANIMATION
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2033620751387790036}
   - component: {fileID: 3392055434012945609}
   - component: {fileID: 1164826237156036419}
-  - component: {fileID: 8458534730579256673}
+  - component: {fileID: 6645759201414457334}
   m_Layer: 0
   m_Name: PlaceTemplate
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3477133944244640329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.98, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1268679773588873455}
   m_RootOrder: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957a10da1aac2b8448a140c541f06043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCollider: {fileID: 8458534730579256673}
+  myCollider: {fileID: 6645759201414457334}
   myRigid: {fileID: 1164826237156036419}
   PlacingOffset: {x: 0, y: 0, z: 0}
 --- !u!54 &1164826237156036419
@@ -64,8 +64,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!64 &8458534730579256673
-MeshCollider:
+--- !u!65 &6645759201414457334
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -74,10 +74,9 @@ MeshCollider:
   m_Material: {fileID: 13400000, guid: 96b6def4f39bcfe40a015e78bfaf32e4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: d2e56a0d743d83743a0c4a684bb6cb3d, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 3.98, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3660320909901577423
 GameObject:
   m_ObjectHideFlags: 0

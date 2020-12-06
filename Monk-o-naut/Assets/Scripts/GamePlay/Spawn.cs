@@ -21,7 +21,7 @@ public class Spawn : MonoBehaviour
 
     //Time from sim start
     public float Timer = 0.00f;
-    private float ZoomInFov = 45f, ZoomOutFov = 60f;
+    private float ZoomInFov = 35, ZoomOutFov = 60f,ZoomSpeed = 15f;
 
     Vector3 OutPosition;
 
@@ -52,7 +52,7 @@ public class Spawn : MonoBehaviour
         {
             if (Camera.main.fieldOfView < ZoomOutFov)
             {
-                Camera.main.fieldOfView += 5*Time.deltaTime;
+                Camera.main.fieldOfView += ZoomSpeed * Time.deltaTime;
             }
         }
 
@@ -72,9 +72,9 @@ public class Spawn : MonoBehaviour
             Vector3 adjustedPoisitionForDistance = new Vector3(playerTransform.position.x, Mathf.Clamp(playerTransform.position.y,-8,16), camTransform.position.z);
             camTransform.position = Vector3.Lerp(camTransform.position, adjustedPoisitionForDistance, Time.deltaTime * LerpSpeed);
 
-            if (Camera.main.fieldOfView < ZoomInFov)
+            if (Camera.main.fieldOfView > ZoomInFov)
             {
-                Camera.main.fieldOfView -= 5 * Time.deltaTime;
+                Camera.main.fieldOfView -= ZoomSpeed * Time.deltaTime;
             }
         }
     }
