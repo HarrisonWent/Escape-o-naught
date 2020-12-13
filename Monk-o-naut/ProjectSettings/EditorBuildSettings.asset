@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: cec64fcc24bc4614a9e0ccc48a4d3d77
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/Level1_Lab.unity
     guid: 2aa13b5c529f72247938bbbf26037bee
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Scenes/Level2_Corridor.unity
     guid: 5fd16b6d0cf478b419fe6485b7a21846
   - enabled: 1
-    path: Assets/Scenes/Level3.unity
+    path: Assets/Scenes/Level3_RocketFactory.unity
     guid: fd12ede190c3b534483f6e9a5ffaf0fa
   m_configObjects: {}
