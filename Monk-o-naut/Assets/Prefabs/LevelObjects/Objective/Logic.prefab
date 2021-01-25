@@ -2425,11 +2425,13 @@ MonoBehaviour:
   - 
   MessagePanelPrefab: {fileID: 8996923218596552566, guid: 60ba2829457ec474d8e97292327cd04c,
     type: 3}
-  UIObjectToHide: {fileID: 3927178448236439786}
   binObject: {fileID: 3927178447583739540}
   ButtonPrefab: {fileID: 3167869594837057568, guid: 2634fa5ba4ba6c740a0c87f59cec2193,
     type: 3}
   BuildingTabPanel: {fileID: 3927178447047498437}
+  UIObjectToHide:
+  - {fileID: 3927178448236439786}
+  - {fileID: 3353844429294827593}
   NormalCursor: {fileID: 2800000, guid: 51e2b0157217f5648b02714eb942a13c, type: 3}
   RedCursor: {fileID: 2800000, guid: 768effeca6670d840afa78173e1b9c48, type: 3}
 --- !u!1 &3927178447425545118

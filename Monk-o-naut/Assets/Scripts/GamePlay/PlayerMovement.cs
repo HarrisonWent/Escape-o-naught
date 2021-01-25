@@ -53,9 +53,9 @@ public class PlayerMovement : MonoBehaviour
             float yDif = transform.position.y - collision.transform.position.y;
 
             //move the player to the other side of the flip and invert gravity
-            transform.position = new Vector3(transform.position.x, collision.transform.position.y - yDif - 0.5f, transform.position.z);
+            //transform.position = new Vector3(transform.position.x, collision.transform.position.y - yDif - 0.5f, transform.position.z);
             Physics.gravity = -Physics.gravity;
-            transform.Rotate(Vector2.left * 180);
+            //transform.Rotate(Vector2.left * 180);
         }
         else if (collision.transform.tag == "Deflective")
         {

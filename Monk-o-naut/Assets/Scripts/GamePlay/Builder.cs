@@ -16,7 +16,9 @@ public class Builder : MonoBehaviour
     public string[] MessageToShow;
     public GameObject MessagePanelPrefab;
 
-    public GameObject UIObjectToHide, binObject, ButtonPrefab, BuildingTabPanel;
+    public GameObject binObject, ButtonPrefab, BuildingTabPanel;
+    public GameObject[] UIObjectToHide;
+
     //UIObject to hide = Build canvas
     //binObject = UI bin button
     //Button prefab = UI button for each object
@@ -89,7 +91,9 @@ public class Builder : MonoBehaviour
             }
 
             currentNumber = objectNumber;
-            UIObjectToHide.SetActive(false);
+
+            foreach(GameObject g in UIObjectToHide) { g.SetActive(false); }
+
             binObject.SetActive(true);
             rotatecount = 0;
 
@@ -100,7 +104,7 @@ public class Builder : MonoBehaviour
     {
         if (!placingObject)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && !EventSystem.current.IsPointerOverGameObject())
             {
                 Vector3 mousePoint =GetMousePosition();
                 mousePoint.z = -23;
@@ -124,7 +128,7 @@ public class Builder : MonoBehaviour
                             placingObject = hit.transform.parent.gameObject;
                             placingValidate = hit.transform.parent.GetComponentInChildren<ValidateBuild>();
                             placingValidate.ActivateValidator();
-                            UIObjectToHide.SetActive(false);
+                            foreach (GameObject g in UIObjectToHide) { g.SetActive(false); }
                             binObject.SetActive(true);
                             currentNumber = 900;
                         }
@@ -247,7 +251,7 @@ public class Builder : MonoBehaviour
     private void SwitchMenu()
     {
         binObject.SetActive(false);
-        UIObjectToHide.SetActive(true);
+        foreach (GameObject g in UIObjectToHide) { g.SetActive(true); }
     }
 
     //Update limits on building objects

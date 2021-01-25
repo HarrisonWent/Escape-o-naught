@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level3_RocketFactory.unity
     guid: fd12ede190c3b534483f6e9a5ffaf0fa
+  - enabled: 1
+    path: Assets/Scenes/Level4_SpaceSuitArea.unity
+    guid: d343d5c2968039f4ba7fa1d73b7c4024
   m_configObjects: {}
