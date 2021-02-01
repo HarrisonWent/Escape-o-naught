@@ -23,6 +23,8 @@ public class ResetLevel : MonoBehaviour
         //Reset amount of blocks left
         BuilderScript.ResetLimits();
 
+        if (Physics.gravity.y > 0) { Physics.gravity = -Physics.gravity; }
+
         //Destroy player
         GameObject.Find("MenuLogic").GetComponent<PauseToggle>().SetToBuildMode();
 

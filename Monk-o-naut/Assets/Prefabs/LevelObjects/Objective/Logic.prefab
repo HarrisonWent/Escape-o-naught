@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 369235728}
   - component: {fileID: 369235727}
   - component: {fileID: 369235726}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button(MainMenu)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 424020008}
   - component: {fileID: 424020007}
   - component: {fileID: 424020006}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Panel(MenuDropDown)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 1504185254}
   - component: {fileID: 1504185253}
   - component: {fileID: 1504185252}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button(Exit)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 1760207407}
   - component: {fileID: 1760207409}
   - component: {fileID: 1760207408}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 1959743969}
   - component: {fileID: 1959743971}
   - component: {fileID: 1959743970}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1506,7 +1506,7 @@ GameObject:
   - component: {fileID: 6803834464339875938}
   - component: {fileID: 5549646186457296524}
   - component: {fileID: 1921548641194686385}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button(MainMenu)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1709,7 +1709,7 @@ GameObject:
   - component: {fileID: 7994230836917379655}
   - component: {fileID: 3116263638477756332}
   - component: {fileID: 6542616491493095180}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2013,7 +2013,7 @@ GameObject:
   - component: {fileID: 4629522830997675699}
   - component: {fileID: 7417598609613530153}
   - component: {fileID: 2198955521665093568}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2092,7 +2092,7 @@ GameObject:
   - component: {fileID: 1756129861462977983}
   - component: {fileID: 1792708547548983143}
   - component: {fileID: 7097576849470531695}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas(misc)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,7 +2194,7 @@ GameObject:
   - component: {fileID: 1455964866119730661}
   - component: {fileID: 5848962867459836752}
   - component: {fileID: 1361205738952879612}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4149,7 +4149,7 @@ GameObject:
   - component: {fileID: 6991093365505864865}
   - component: {fileID: 3426190505246098458}
   - component: {fileID: 6133651870658337246}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button(Exit) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
