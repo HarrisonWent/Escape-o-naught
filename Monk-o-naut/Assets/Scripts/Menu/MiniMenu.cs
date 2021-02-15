@@ -9,13 +9,13 @@ public class MiniMenu : MonoBehaviour
 
     public void Exit()
     {
-        SaveIt();
+        //SaveIt();
         Application.Quit();
     }
 
     public void MainMenu()
     {
-        SaveIt();
+        //SaveIt();
         SceneManager.LoadSceneAsync(0);
     }
 

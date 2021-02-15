@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.transform.tag == "Deflective")
         {
             Debug.Log("Deflect");
+            MyRigid.velocity = new Vector3(MyRigid.velocity.x*0.3f,MyRigid.velocity.y, MyRigid.velocity.z);
             myForce.force = new Vector3(-myForce.force.x, myForce.force.y, 0);            
             transform.Rotate(Vector3.up * 180);
         }

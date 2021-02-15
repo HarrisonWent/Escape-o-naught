@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
+
     //Speed at which camera tracks player
     public int LerpSpeed = 5;
 
@@ -79,4 +80,6 @@ public class Spawn : MonoBehaviour
         }
     }
 
+
+    public void ResetTimer() { Timer = 0f; }
 }

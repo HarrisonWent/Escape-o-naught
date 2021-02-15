@@ -23,9 +23,9 @@ public class LevelSelect : MonoBehaviour
     {
         int NextlevelInt = SceneManager.GetActiveScene().buildIndex + 1;
 
-        bool PreStarted = GameObject.Find("SaveGame").GetComponent<SaveGame>().LoadSavedLevel("/" + NextlevelInt);
-        if (!PreStarted)
-        {
+        //bool PreStarted = GameObject.Find("SaveGame").GetComponent<SaveGame>().LoadSavedLevel("/" + NextlevelInt);
+        //if (!PreStarted)
+        //{
             if (NextlevelInt > SceneManager.sceneCountInBuildSettings)
             {
                 SceneManager.LoadSceneAsync(0);
@@ -34,7 +34,7 @@ public class LevelSelect : MonoBehaviour
             {
                 SceneManager.LoadSceneAsync(NextlevelInt);
             }
-        }
+        //}
 
     }
 
@@ -95,10 +95,10 @@ public class LevelSelect : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         //start loading the level
-        bool PreStarted = GameObject.Find("SaveGame").GetComponent<SaveGame>().LoadSavedLevel("/" + number);
-        if (!PreStarted)
-        {
+        //bool PreStarted = GameObject.Find("SaveGame").GetComponent<SaveGame>().LoadSavedLevel("/" + number);
+        //if (!PreStarted)
+        //{
             SceneManager.LoadSceneAsync(number);
-        }
+        //}
     }
 }

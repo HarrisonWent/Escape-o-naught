@@ -1,0 +1,14 @@
+New in this version:
+-Created and implemented Graphics/art assets for the second level and cleaned it up
+-Added Scoring UI in the top left which shows the time limit for the current amount of stars
+-Descriptive messages for all block types
+-improved responsiveness from the defelctor block
+
+Notes:
+-not all blocks have proper icons/objects yet
+-sounds are not final and planning on adding more such as atmospheric sounds to levels
+-Known issue: going to the menu will start playing music over the music already playing 
+-still planning to make level 5 (going to the rocket), its not in this build sorry :/
+-planning on adding an indicator for the spawn point of the player
+-removed saving/loading levels as it was useless
+-the game probably needs renaming since it is no longer a monkey

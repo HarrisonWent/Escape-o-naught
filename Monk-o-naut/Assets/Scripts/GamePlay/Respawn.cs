@@ -10,7 +10,7 @@ public class Respawn : MonoBehaviour
 
     public int lives = 3;
     public Sprite EmptyHeart, FilledHeart;
-
+    public GameObject[] Hearts;
     private void Start()
     {
         Debug.Log(lives);
@@ -25,7 +25,6 @@ public class Respawn : MonoBehaviour
 
     public void UpdateLives()
     {
-        GameObject[] Hearts = GameObject.FindGameObjectsWithTag("HeartUI");
         int count = 1;
         foreach (GameObject h in Hearts)
         {
