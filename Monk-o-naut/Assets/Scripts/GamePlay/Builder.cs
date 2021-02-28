@@ -77,7 +77,8 @@ public class Builder : MonoBehaviour
             //Spawn prefab
             placingObject = Instantiate(BuildingPrefabs[objectNumber], transform.position, transform.rotation);
             placingObject.name = BuildingPrefabs[objectNumber].name + BuildingCounter;
-            placingValidate= placingObject.GetComponentInChildren<ValidateBuild>();
+            ValidateBuild VB = placingObject.GetComponentInChildren<ValidateBuild>(); ;
+            placingValidate = VB;
             if (placingObject.GetComponent<PlaceTeleporter>())
             {
                 placingObject.transform.position = Vector3.zero;
@@ -86,13 +87,16 @@ public class Builder : MonoBehaviour
             }
             else
             {
-                placingObject.GetComponentInChildren<ValidateBuild>().ActivateValidator();
+                VB.ActivateValidator();
                 CanBeRotated = placingObject.GetComponent<CanBeRotated>().canBeRotated;
             }
 
             currentNumber = objectNumber;
+            VB.ID = currentNumber;
+            BuildLimitsForLevel[currentNumber]--;
+            buttonTexts[currentNumber].text = "x" + BuildLimitsForLevel[currentNumber];
 
-            foreach(GameObject g in UIObjectToHide) { g.SetActive(false); }
+            foreach (GameObject g in UIObjectToHide) { g.SetActive(false); }
 
             binObject.SetActive(true);
             rotatecount = 0;
@@ -186,7 +190,6 @@ public class Builder : MonoBehaviour
                 else
                 {
                     Debug.Log("Second placed");
-                    BuildLimitsForLevel[currentNumber]--;
                     placingObject = null;
                     placingTeleporter = false;
                     BuildingCounter++;
@@ -197,9 +200,7 @@ public class Builder : MonoBehaviour
             {
                 if (currentNumber != 900)
                 {
-                    BuildLimitsForLevel[currentNumber]--;
-                    //TODO bug where not all button are there
-                    buttonTexts[currentNumber].text = "x" + BuildLimitsForLevel[currentNumber];
+                    //TODO bug where not all button are there                    
                 }
 
                 placingObject.GetComponentInChildren<ValidateBuild>().DisableValidator();
@@ -235,6 +236,11 @@ public class Builder : MonoBehaviour
     public void BinIt()
     {
         Debug.Log("BinObj");
+
+        int BinID = placingObject.GetComponentInChildren<ValidateBuild>().ID;
+        BuildLimitsForLevel[BinID]++;
+        buttonTexts[BinID].text = "x" + BuildLimitsForLevel[BinID];        
+
         if (placingObject.transform.parent)
         {
             Destroy(placingObject.transform.parent);
@@ -243,6 +249,8 @@ public class Builder : MonoBehaviour
         {
             Destroy(placingObject);
         }
+
+        ValidateBuildCount = true;
 
         SwitchMenu();
     }

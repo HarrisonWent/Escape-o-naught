@@ -20,6 +20,8 @@ public class ValidateBuild : MonoBehaviour
         Builder.ValidateBuildCount = true;
     }
 
+    public int ID = 0;
+
     //Turns on validation
     public void ActivateValidator()
     {        

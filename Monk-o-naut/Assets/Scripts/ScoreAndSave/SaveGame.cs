@@ -59,7 +59,7 @@ public class SaveGame : MonoBehaviour
         write.WriteLine(UserObjects.Length);
 
         //Save blocks type, position and rotation
-        foreach(GameObject G in UserObjects)
+        foreach (GameObject G in UserObjects)
         {
             write.WriteLine(G.name);
             write.WriteLine(G.transform.position.x + "\n" + G.transform.position.y + "\n" + G.transform.position.z);
@@ -149,7 +149,7 @@ public class SaveGame : MonoBehaviour
                     Debug.Log("Spawn object");
                 }
                 count++;
-            }            
+            }
         }
 
         //Change the remaining blocks for the player to reflect those they placed in the last save
