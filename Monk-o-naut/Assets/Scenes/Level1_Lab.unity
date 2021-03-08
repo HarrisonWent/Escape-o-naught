@@ -18874,6 +18874,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4690142299917038512, guid: 9d62698757a017a44b3f8b6e82c2003a,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 0c29ff3afffd0ce4aa16803f536226f1, type: 2}
     - target: {fileID: 4722477835264245981, guid: 9d62698757a017a44b3f8b6e82c2003a,
         type: 3}
       propertyPath: BuildLimitsForLevel.Array.data[0]
@@ -18992,6 +18997,31 @@ PrefabInstance:
     - target: {fileID: 8331301086502841892, guid: 9d62698757a017a44b3f8b6e82c2003a,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906222257940634251, guid: 9d62698757a017a44b3f8b6e82c2003a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906222257940634251, guid: 9d62698757a017a44b3f8b6e82c2003a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906222257940634251, guid: 9d62698757a017a44b3f8b6e82c2003a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906222257940634251, guid: 9d62698757a017a44b3f8b6e82c2003a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906222257940634251, guid: 9d62698757a017a44b3f8b6e82c2003a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

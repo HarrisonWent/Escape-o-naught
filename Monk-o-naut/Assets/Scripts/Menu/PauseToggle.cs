@@ -10,7 +10,7 @@ public class PauseToggle : MonoBehaviour
     public Sprite PauseIcon,PlayIcon;
     public Image PauseButtonImage;
     public Spawn PlayerSpawn;
-    public GameObject BuildPanel;
+    public GameObject BuildPanel, StartSign;
 
     private GameObject Grid;
 
@@ -40,6 +40,7 @@ public class PauseToggle : MonoBehaviour
         Destroy(PlayerSpawn.SpawnedPlayer);
         Grid.SetActive(true);
         BuildPanel.SetActive(true);
+        StartSign.SetActive(true);
     }
 
     public void SetToPlayMode()
@@ -48,5 +49,6 @@ public class PauseToggle : MonoBehaviour
         PauseButtonImage.sprite = PauseIcon;
         PlayerSpawn.SpawnPlayer();
         Grid.SetActive(false);
+        StartSign.SetActive(false);
     }
 }

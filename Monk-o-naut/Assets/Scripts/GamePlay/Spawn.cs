@@ -33,9 +33,10 @@ public class Spawn : MonoBehaviour
         ZoomOutFov = Camera.main.fieldOfView;
     }
 
+    private Vector3 StartRot = new Vector3(0, 90, 0);
     public void SpawnPlayer()
     {
-        SpawnedPlayer = Instantiate(Player, transform.position, transform.rotation);
+        SpawnedPlayer = Instantiate(Player, transform.position, Quaternion.Euler(StartRot));
 
         playerTransform = SpawnedPlayer.transform;
 

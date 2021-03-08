@@ -70,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
             MyRigid.velocity = new Vector2(MyRigid.velocity.x,0);
             MyRigid.AddForce(transform.TransformDirection(Vector3.up)* BounceForce, ForceMode.Impulse);
             FindObjectOfType<AudioManager>().Play("BounceStraight"); // jump sound effect
+            collision.gameObject.GetComponentInParent<Animation>().Play();
         }
     }
 
