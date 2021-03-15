@@ -7,8 +7,15 @@ public class SingleSource : MonoBehaviour
     public static SingleSource SS = null;
     void Start()
     {
-        if (SS) { Destroy(gameObject); }
-        SS = this;
+        if (SS != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            SS = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
 }
