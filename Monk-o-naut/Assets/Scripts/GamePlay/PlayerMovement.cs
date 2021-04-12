@@ -117,6 +117,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            if (MyAnimator.GetBool("Falling") == true)
+            {
+                FindObjectOfType<AudioManager>().Play("FallLand");
+            }
             MyAnimator.SetBool("Falling", false);
         }
     }

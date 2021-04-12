@@ -176,8 +176,8 @@ public class Builder : MonoBehaviour
 
         //Place object
         if(Input.GetButtonDown("Fire1") && !EventSystem.current.IsPointerOverGameObject())
-        {           
-
+        {
+            FindObjectOfType<AudioManager>().Play("PlaceBlock");
             if (placingTeleporter)
             {
                 if (!placingObject.GetComponentInParent<PlaceTeleporter>().FirstPlaced)

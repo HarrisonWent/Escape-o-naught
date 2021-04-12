@@ -45,23 +45,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 24300002, guid: a0d16baf14488f14a820185889513b3b, type: 2}
   sounds:
-  - name: LevelFailed
-    clip: {fileID: 8300000, guid: da96196e4f6dafd49bfd0b409afdd611, type: 3}
-    volume: 1
-    volumeVariance: 0
-    pitch: 1
-    pitchVariance: 0
-    loop: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
   - name: BounceStraight
-    clip: {fileID: 8300000, guid: 9c981ecdcdff3534090625937bccc135, type: 3}
+    clip: {fileID: 8300000, guid: 6c98bd9e96c748346a42fd646b612606, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: a0d16baf14488f14a820185889513b3b, type: 2}
     source: {fileID: 0}
   - name: LevelComplete
     clip: {fileID: 8300000, guid: f41ab64cd39d1054e89f8876fa982a0e, type: 3}
@@ -70,7 +61,7 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: a0d16baf14488f14a820185889513b3b, type: 2}
     source: {fileID: 0}
   - name: MenuClick
     clip: {fileID: 8300000, guid: cedc01385674b6646b2ab7f62f068f59, type: 3}
@@ -79,32 +70,23 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: a0d16baf14488f14a820185889513b3b, type: 2}
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 1
+  - name: PlaceBlock
+    clip: {fileID: 8300000, guid: 9ba61dfecb46599448cc0e6d66524e12, type: 3}
+    volume: 0.5
     volumeVariance: 0
-    pitch: 0
+    pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: a0d16baf14488f14a820185889513b3b, type: 2}
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 1
+  - name: FallLand
+    clip: {fileID: 8300000, guid: 802aa99b9892cb54aa1f2a7d423eadba, type: 3}
+    volume: 0.75
     volumeVariance: 0
-    pitch: 0
+    pitch: 1
     pitchVariance: 0
     loop: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 1
-    volumeVariance: 0
-    pitch: 0
-    pitchVariance: 0
-    loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: a0d16baf14488f14a820185889513b3b, type: 2}
     source: {fileID: 0}
