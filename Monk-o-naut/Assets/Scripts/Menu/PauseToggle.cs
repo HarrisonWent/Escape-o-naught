@@ -35,6 +35,10 @@ public class PauseToggle : MonoBehaviour
 
     public void SetToBuildMode()
     {
+        if (Physics.gravity.y > 0f)
+        {
+            Physics.gravity *= -1;
+        }
         PlayMode = false;
         PauseButtonImage.sprite = PlayIcon;
         Destroy(PlayerSpawn.SpawnedPlayer);

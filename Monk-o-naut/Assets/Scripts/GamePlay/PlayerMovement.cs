@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         //jump
         if ((MyRigid.velocity.y > 2 || MyRigid.velocity.y < -1) && myForce.force.y == -1)
         {
-            //JUMP ANIMATION
+            //JUMP ANIMATION 
             MyAnimator.SetBool("Falling", true);
             if (MyRigid.velocity.x > FallingSpeed)
             {
@@ -117,11 +117,18 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (MyAnimator.GetBool("Falling") == true)
+            if (Physics.gravity.y > 0f)
             {
-                FindObjectOfType<AudioManager>().Play("FallLand");
+                MyAnimator.SetBool("Falling", true);
             }
-            MyAnimator.SetBool("Falling", false);
+            else
+            {
+                if (MyAnimator.GetBool("Falling") == true)
+                {
+                    FindObjectOfType<AudioManager>().Play("FallLand");
+                }
+                MyAnimator.SetBool("Falling", false);
+            }
         }
     }
 

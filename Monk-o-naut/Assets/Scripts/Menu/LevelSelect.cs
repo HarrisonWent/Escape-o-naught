@@ -23,10 +23,15 @@ public class LevelSelect : MonoBehaviour
     {
         int NextlevelInt = SceneManager.GetActiveScene().buildIndex + 1;
 
+        if (Physics.gravity.y > 0f)
+        {
+            Physics.gravity *= -1;
+        }
+
         //bool PreStarted = GameObject.Find("SaveGame").GetComponent<SaveGame>().LoadSavedLevel("/" + NextlevelInt);
         //if (!PreStarted)
         //{
-            if (NextlevelInt > SceneManager.sceneCountInBuildSettings)
+        if (NextlevelInt > SceneManager.sceneCountInBuildSettings)
             {
                 SceneManager.LoadSceneAsync(0);
             }
@@ -52,16 +57,20 @@ public class LevelSelect : MonoBehaviour
         {
             GameObject spawn =Instantiate(LevelButton, transform.position, transform.rotation);
 
+            string sceneName = System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(c));
+
             //LevelLocked
             if (PlayerPrefs.GetInt("PlayerLevel") < c)
             {
-                spawn.GetComponentInChildren<Text>().text = "LEVEL " + c + ": " + "LOCKED";
+                spawn.GetComponentInChildren<Text>().text = sceneName + ": LOCKED";
             }
             //LevelUnlocked
             else
             {
-                spawn.GetComponentInChildren<Text>().text = "LEVEL " + c + ": " + PlayerPrefs.GetInt("HighScoreLevel" + c) + "/5 STARS";
+                spawn.GetComponentInChildren<Text>().text = sceneName + ": " + PlayerPrefs.GetInt("HighScoreLevel" + c) + "/5 STARS";
             }
+
+            ;
 
             spawn.transform.SetParent(LevelViewScroll.transform);
             spawn.GetComponent<ButtonLoadLevel>().LevelToLoad = c;
