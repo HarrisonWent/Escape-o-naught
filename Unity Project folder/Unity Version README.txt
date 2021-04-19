@@ -1,0 +1,1 @@
+Project should open with any Unity 2019LTS version later than or equal to 2019.4.14f1
