@@ -81,7 +81,10 @@ public class Builder : MonoBehaviour
             placingObject = Instantiate(BuildingPrefabs[objectNumber], transform.position, transform.rotation);
             placingObject.name = BuildingPrefabs[objectNumber].name + BuildingCounter;
             ValidateBuild VB = placingObject.GetComponentInChildren<ValidateBuild>();
+
             VB.ActivateValidator();
+	    CanBeRotated = placingObject.GetComponent<CanBeRotated>().canBeRotated;
+
             placingValidate = VB;
 
             currentNumber = objectNumber;
